@@ -1,0 +1,23 @@
+{
+  "name": "tcc_univesp_bec_smart_contracts",
+  "version": "1.0.0",
+  "description": "TCC UNivesp Bacharelado Engenharia de Computação",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rsgamboa/TCC_Univesp_BEC_Smart_Contracts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rsgamboa/TCC_Univesp_BEC_Smart_Contracts/issues"
+  },
+  "homepage": "https://github.com/rsgamboa/TCC_Univesp_BEC_Smart_Contracts#readme"
+}
