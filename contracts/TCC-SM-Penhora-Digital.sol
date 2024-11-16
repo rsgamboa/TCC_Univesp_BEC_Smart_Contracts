@@ -3,25 +3,19 @@ pragma solidity ^0.8.0;
 
 /**
  * @title DigitalAssetSeizure
- * @dev Um contrato para gerenciar a penhora de ativos digitais.
+ * @dev Contrato para gerenciar a penhora de ativos digitais.
  */
 contract DigitalAssetSeizure {
     /**
      * @dev Estrutura para representar um ativo digital.
-     * @param id: Identificador único para o ativo digital.
-     * @param name: Nome do ativo digital.
-     * @param hash: Hash do ativo digital para verificação de integridade.
-     * @param owner: Endereço do atual proprietário do ativo digital.
-     * @param timestamp: Timestamp quando o ativo digital foi criado ou registrado.
-     * @param isSeized: Booleano indicando se o ativo digital está penhorado.
      */
     struct DigitalAsset {
-        uint256 id;
-        string name;
-        bytes32 hash;
-        address owner;
-        uint256 timestamp;
-        bool isSeized;
+        uint256 id;         // Identificador único do ativo digital
+        string name;        // Nome do ativo digital
+        bytes32 hash;       // Hash do ativo digital para verificação de integridade
+        address owner;      // Endereço do proprietário atual do ativo digital
+        uint256 timestamp;  // Timestamp de criação ou registro do ativo digital
+        bool isSeized;      // Indica se o ativo digital está penhorado
     }
 
     DigitalAsset[] public digitalAssets;
@@ -43,9 +37,8 @@ contract DigitalAssetSeizure {
 
     /**
      * @dev Faz o upload de um novo ativo digital.
-     * @param _name O nome do ativo digital.
-     * @param _data Os dados do ativo digital que serão usados para gerar o hash.
-     * @emit AssetUploaded Emite um evento quando o ativo digital é carregado.
+     * @param _name Nome do ativo digital.
+     * @param _data Dados do ativo digital para gerar o hash.
      */
     function uploadAsset(string memory _name, string memory _data) public {
         bytes32 hash = keccak256(abi.encodePacked(_data)); // Gera o hash do ativo digital
@@ -62,10 +55,8 @@ contract DigitalAssetSeizure {
     }
 
     /**
-     * @param _id O identificador do ativo digital a ser penhorado.
-     * @dev Apenas o administrador pode chamar esta função. 
-     *      Verifica se o ativo digital existe e se não está penhorado antes de penhorá-lo.
-     * @emit AssetSeized Emite um evento quando o ativo digital é penhorado.
+     * @dev Penhora um ativo digital.
+     * @param _id Identificador do ativo digital a ser penhorado.
      */
     function seizeAsset(uint256 _id) public onlyAdmin {
         require(_id < nextAssetId, "Ativo não existe");
@@ -75,10 +66,8 @@ contract DigitalAssetSeizure {
     }
 
     /**
-     * @param _id O identificador do ativo digital a ser liberado.
-     * @dev Apenas o administrador pode chamar esta função. 
-     *      Verifica se o ativo digital existe e se está penhorado antes de liberá-lo.
-     * @emit AssetReleased Emite um evento quando o ativo digital é liberado.
+     * @dev Libera um ativo digital penhorado.
+     * @param _id Identificador do ativo digital a ser liberado.
      */
     function releaseAsset(uint256 _id) public onlyAdmin {
         require(_id < nextAssetId, "Ativo não existe");
@@ -89,7 +78,7 @@ contract DigitalAssetSeizure {
 
     /**
      * @dev Retorna todos os ativos digitais do contrato.
-     * @return Um array de structs DigitalAsset representando todos os ativos digitais.
+     * @return Array de structs DigitalAsset representando todos os ativos digitais.
      */
     function getAssets() public view returns (DigitalAsset[] memory) {
         return digitalAssets;
