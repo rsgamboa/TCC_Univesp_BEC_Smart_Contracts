@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/rsgamboa/TCC_Univesp_BEC_Smart_Contracts/issues"
   },
-  "homepage": "https://github.com/rsgamboa/TCC_Univesp_BEC_Smart_Contracts#readme"
+  "homepage": "https://github.com/rsgamboa/TCC_Univesp_BEC_Smart_Contracts#readme",
+  "dependencies": {
+    "web3": "^4.15.0"
+  }
 }
