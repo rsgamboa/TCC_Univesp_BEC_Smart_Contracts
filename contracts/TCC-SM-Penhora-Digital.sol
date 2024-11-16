@@ -39,6 +39,7 @@ contract DigitalAssetSeizure {
      * @dev Faz o upload de um novo ativo digital.
      * @param _name Nome do ativo digital.
      * @param _data Dados do ativo digital para gerar o hash.
+     * @emit AssetUploaded Emite um evento quando o ativo é carregado.
      */
     function uploadAsset(string memory _name, string memory _data) public {
         bytes32 hash = keccak256(abi.encodePacked(_data)); // Gera o hash do ativo digital
@@ -55,8 +56,10 @@ contract DigitalAssetSeizure {
     }
 
     /**
-     * @dev Penhora um ativo digital.
-     * @param _id Identificador do ativo digital a ser penhorado.
+     * @param _id O identificador do ativo a ser penhorado.
+     * @dev Apenas o administrador pode chamar esta função. 
+     *      Verifica se o ativo existe e se não está penhorado antes de penhorá-lo.
+     * @emit AssetSeized Emite um evento quando o ativo é penhorado.
      */
     function seizeAsset(uint256 _id) public onlyAdmin {
         require(_id < nextAssetId, "Ativo não existe");
@@ -66,8 +69,10 @@ contract DigitalAssetSeizure {
     }
 
     /**
-     * @dev Libera um ativo digital penhorado.
-     * @param _id Identificador do ativo digital a ser liberado.
+     * @param _id O identificador do ativo a ser liberado.
+     * @dev Apenas o administrador pode chamar esta função. 
+     *      Verifica se o ativo existe e se está penhorado antes de liberá-lo.
+     * @emit AssetReleased Emite um evento quando o ativo é liberado.
      */
     function releaseAsset(uint256 _id) public onlyAdmin {
         require(_id < nextAssetId, "Ativo não existe");
