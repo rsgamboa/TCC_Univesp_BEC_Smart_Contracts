@@ -30,13 +30,13 @@ TCC_Univesp_BEC_Smart_Contracts/
 ├── migrations/
 │   └── 2_deploy_contracts.js
 ├── src/
-│   ├── 
-│   └── 
+│   ├── app.js
+│   └── index.html
 ├── test/
 │   └── DigitalAssetSeizure.test.js
-├── [truffle-config.js](http://_vscodecontentref_/2)
-└── [README.md](http://_vscodecontentref_/3)
-
+├── truffle-config.js
+└── README.md
+```
 
 ## Instalação e Configuração
 ### Pré-requisitos
